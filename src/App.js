@@ -5,11 +5,23 @@ import {useState} from "react";
 import {Data} from './components/Data';
 import MoviesList from './components/MoviesList';
 import Add from './components/Add'
-import Filter from './components/Filter'
+import Filter from './components/Filter';
+
 function App() {
   const [movie ,setMovie] = useState(Data);
   
+  const [name, setName] = useState('')
+  const [rate, setRate] = useState(0)
 
+
+  const handleRate = (x) => {
+    setRate(x)
+  }
+
+  const handleName = (e) => {
+    // e.preventDefault()
+    setName(e.target.value)
+  }
   const addMovie = (newMovie) => {
     setMovie([...movie, newMovie])
 }
@@ -19,8 +31,8 @@ function App() {
   return (
     <div className="App">
 
-    <Filter movie={movie} />
-    <MoviesList  movie={movie}  />
+<Filter handleName={handleName} handleRate={handleRate}/>
+    <MoviesList  movie={movie} name={name} rate={rate} />
     <Add addMovie={addMovie} />
     
     </div>

@@ -1,32 +1,30 @@
-import React, {useState} from 'react'
-//import {Form} from 'react-bootstrap'
-import MovieCard from './MovieCard'
+import React from "react";
+import { Navbar, Container, Form, FormControl } from "react-bootstrap";
+import ReactStars from "react-stars";
 
-const Filter = ({movie}) => {
-    const [title, setTitle] = useState('');
-    const searchMovies =(e) => {
-        
-        setTitle(e.target.value);
-    return (  
-        <>
-        <form className="form" onSubmit={searchMovies}>
-            <label className="label" htmlFor="title">Movie Name</label>
-            <input className="input" type="text" name="title"
-                placeholder="i.e. Jurassic Park"
-                value={title} onChange={(e) => setTitle(e.target.value)}
+const Filter = ({handleName, handleRate}) => {
+    return (
+        <Navbar bg="dark" variant="dark">
+            <Container>
+                <Navbar.Brand href="#home">Movie APP</Navbar.Brand>
+                <ReactStars 
+                count={5} 
+                size={24} 
+                color2={"white"}
+                onChange={handleRate}
                 />
-            <button className="button" type="submit">Search</button>
-        </form>
-        <div className="card-list">
-            {/* map - displays movies, filter - filters movies with the photo */}
-           {movie.filter(mov => mov.poster_path).map(mov => (
-              <MovieCard mov={mov} key={mov.id} /> 
-           ))}
-        </div>    
-    </>  
-       
-    )
-}}
+                <Form className="d-flex">
+                    <FormControl
+                        type="search"
+                        placeholder="Search"
+                        onChange={(e) => handleName(e)}
+                        className="me-2"
+                        aria-label="Search"
+                    />
+                </Form>
+            </Container>
+        </Navbar>
+    );
+};
 
-export default Filter
-
+export default Filter;

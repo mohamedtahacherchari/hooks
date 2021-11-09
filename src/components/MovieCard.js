@@ -1,5 +1,6 @@
 import React from 'react'
 import {Card} from "react-bootstrap"
+//import StarRatingComponent from "react-star-rating-component"
 const MovieCard = ({mov}) => {
     return (
         <div>
@@ -11,7 +12,7 @@ const MovieCard = ({mov}) => {
          {mov.description}
         </Card.Text>
         <Card.Text>
-         {mov.rate}
+        value={mov.rate}
         </Card.Text>
        
       </Card.Body>
