@@ -7,6 +7,10 @@ import MoviesList from './components/MoviesList';
 import Add from './components/Add'
 import Filter from './components/Filter';
 
+//import MovieCard from './components/MovieCard';
+import Trailer from './components/Trailer';
+import { Route,Switch } from 'react-router-dom';
+
 function App() {
   const [movie ,setMovie] = useState(Data);
   
@@ -30,10 +34,16 @@ function App() {
  
   return (
     <div className="App">
-
-<Filter handleName={handleName} handleRate={handleRate}/>
+<Switch>
+  <Route exact path='/'  render={()=>
+  <div>
+    <Filter handleName={handleName} handleRate={handleRate}/>
     <MoviesList  movie={movie} name={name} rate={rate} />
-    <Add addMovie={addMovie} />
+    <Add addMovie={addMovie} /> 
+    </div>}
+    />
+    <Route path="/movie/:id" render={(props) => <Trailer movie={movie}{...props}/>}/>
+</Switch>
     
     </div>
   );
